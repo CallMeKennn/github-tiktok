@@ -1,0 +1,84 @@
+React Hooks
+
+useState()
+I. Dùng khi nào
+- Khi muốn dữ liệu thay đổi khi giao diện tự động được cập nhật 
+II. Lưu ý
+- Component được re-render sau khi gọi 'setState'
+- Initial State chỉ dùng cho lần đầu
+- Có thể  truyền CallBack vào setState
+- setState là thay thế state bằng giá trị mới
+
+useEffect()
+1. useEffect(CallBack)
+- Chỉ gọi callback mỗi khi Component re-render
+- Gọi callback sau khi Component thêm element vào DOM
+
+2. useEffect(CallBack, [])
+- Chỉ gọi callback 1 lần sau khi Component mounted
+
+3. useEffect(CallBack, [deps])
+- CallBack sẽ được gọi lại mỗi khi deps thay đổi
+
+Chung
+1. CallBack luôn được gọi lại sau khi component mounted
+2. Cleanup function luôn được gọi trước khi component unmounted
+3. Cleanup function luôn được gọi trước khi call back được gọi (trù lần mounted)
+
+useEffect
+1. Cập nhật lại state
+2. Cập nhật DOM (mutated)
+3. Render lại UI
+4. Gọi cleanup nếu deps thay đổi
+5. Gọi useEffect callback
+
+useLayoutEffect
+1. Cập nhật lại state
+2. Cập nhật DOM (mutated)
+3. Gọi cleanup nếu deps thay đổi (sync)
+4. Gọi useLayoutEffect callback (sync)
+5. Render lại UI 
+
+useLayoutEffect dùng khi setState xong check state trong useEffect rồi setState trong chính useEffect đó
+
+useRef:
+- Lưu các giá trị qua một tham chiếu bên ngoài
+- Có thể dùng để lấy DOM Element qua thằng ref
+
+useImperativeHandler: có tính đóng gói
+Cách dùng:
+useImperativeHandler(ref bất kì, callback)
+
+
+useCallBack:
+- Dùng khi tránh tạo ra 1 hàm mới ko cần thiết
+- Khi dùng tạo ra 1 function ở bên ngoài vùng của component
+Cách dùng:
+useCallBack(callback, [])
+Lưu ý: deps giống của useEffect
+
+useMemo 
+- Dùng để tránh thực hiện 1 logic không cần thiết 
+Cách Dùng
+useMemo(callback, [])
+Lưu ý: deps giống của useEffect
+
+
+Higher Order Component
+
+forwardRef: 
+- là một Higher Order Component dùng để chuyển tiếp rè từ componen cha xuống conponent con 
+- được truyền vào tham số thứ 2 của component con
+- được truyền vào đối số của 1 component cha 
+- export default forwardRef(component Con)
+
+memo:
+- export default forwardRef(component Con)
+- Check nếu ít nhất 1 prop của conponent con thay đổi thì cho re-render lại còn ko thì sẽ ko re-render
+- Dùng để tránh re-render không cần thiết
+
+
+Lưu ý:
+- Higher Order Component là 1 component bậc cao dùng để bọc component khác vào 
+
+
